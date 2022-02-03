@@ -6,4 +6,4 @@ deploy:
   image: maven:3.6-jdk-11
   script:
     - echo "$MAVEN_SETTINGS" > ~/.m2/settings.xml
-    - mvn clean deploy -PtraineeshipTemplateDeploy
+    - mvn clean deploy -P traineeshipTemplateDeploy, traineeshipPomTemplate
