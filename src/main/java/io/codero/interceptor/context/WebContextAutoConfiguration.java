@@ -42,14 +42,14 @@ public class WebContextAutoConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public KafkaTemplate<String, UrlDto> kafkaTemplate() {
+    public KafkaTemplate<String, UrlDto> kafkaTemplateInterceptor() {
         return new KafkaTemplate<>(producerFactory());
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // Interceptor apply to all URLs.
-        registry.addInterceptor(new MetricInterceptor(new ProducerService(config.getTopic(), kafkaTemplate())));
+        registry.addInterceptor(new MetricInterceptor(new ProducerService(config.getTopic(), kafkaTemplateInterceptor())));
     }
 
 
