@@ -7,7 +7,7 @@
     <groupId>io.codero</groupId>
     <artifactId>interceptor-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,9 +33,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>${maven-deploy-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>default-deploy</id>
@@ -46,9 +46,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <serverId>${repository.pom.id}</serverId>
-                            <nexusUrl>${repository.pom.url}</nexusUrl>
-                            <skipStaging>true</skipStaging>
+                            <url>${repository.pom.url}</url>
+                            <sources>/target/*.jar</sources>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -65,6 +64,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
         <!--        lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -76,32 +79,16 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.testcontainers</groupId>-->
+<!--            <artifactId>kafka</artifactId>-->
+<!--            <version>1.16.3</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
     </dependencies>
-    <!--    <build>-->
-    <!--        <pluginManagement>-->
-    <!--            <plugins>-->
-    <!--                <plugin>-->
-    <!--                    <groupId>org.springframework.boot</groupId>-->
-    <!--                    <artifactId>spring-boot-maven-plugin</artifactId>-->
-    <!--                </plugin>-->
-    <!--            </plugins>-->
-    <!--        </pluginManagement>-->
-    <!--    </build>-->
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

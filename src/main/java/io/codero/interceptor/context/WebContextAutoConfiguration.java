@@ -24,7 +24,6 @@ import java.util.Map;
 @Configuration
 @ComponentScan
 @EnableConfigurationProperties(KafkaProducerConfig.class)
-//@RequiredArgsConstructor
 public class WebContextAutoConfiguration implements WebMvcConfigurer {
     @Autowired
     private KafkaProducerConfig config;
