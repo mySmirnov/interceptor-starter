@@ -19,7 +19,7 @@ public class ProducerService {
 
     public void sendMetric(String url, String method) {
         UrlDto urlDto = new UrlDto(url, method, LocalDateTime.now());
-        log.info("#### <- Producing message <- {}", urlDto);
+        log.info(topic + ": #### <- Producing message <- {}", urlDto);
         this.template.send(topic, urlDto);
     }
 }

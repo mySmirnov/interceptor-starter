@@ -51,6 +51,4 @@ public class WebContextAutoConfiguration implements WebMvcConfigurer {
         // Interceptor apply to all URLs.
         registry.addInterceptor(new MetricInterceptor(new ProducerService(config.getTopic(), kafkaTemplateInterceptor())));
     }
-
-
 }
